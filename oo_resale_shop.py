@@ -59,5 +59,5 @@ def main():
     mystore.refurbish(computer_1)
     mystore.print_inventory(computer_1)
     
-
-main()
+if __name__ == "__main__":
+    main()
