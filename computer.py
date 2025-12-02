@@ -9,6 +9,7 @@ class Computer:
     year_made: int
     price: int
     
+    inventory: list
     # constructor method initializes parameters for computer
     def __init__(self, description: str,
                     processor_type: str,
@@ -27,24 +28,31 @@ class Computer:
 
     # updates the operating system from an older one to the new one
     def update_OS(self, computer_1):
-        new_OS = "MacOS Monterey"
-        print("Updating OS", computer_1.operating_system, ", to OS ", new_OS) 
-        print("Done.\n")
+        if computer_1.description in self.inventory:
+            new_OS = "MacOS Monterey"
+            print("Updating OS", computer_1.operating_system, ", to OS ", new_OS) 
+            print("Done.\n")
+        else:
+            print("Error. ", computer_1.description, " is not in inventory.")
     
     # updates the price of the computer depending on the year made
     def update_price(self, computer_1):
-       new_price = computer_1.price
-       if int(computer_1.year_made) < 2000:
+        if computer_1 in self.inventory:
+            new_price = computer_1.price
+            if int(computer_1.year_made) < 2000:
                 computer_1.price = 0 # too old to sell, donation only
-       elif int(computer_1.year_made) < 2012:
+            elif int(computer_1.year_made) < 2012:
                 computer_1.price = 250 # heavily-discounted price on machines 10+ years old
-       elif int(computer_1.year_made) < 2018:
+            elif int(computer_1.year_made) < 2018:
                 computer_1.price= 550 # discounted price on machines 4-to-10 year old machines
-       else:
+            else:
                 computer_1.price = 1000 # recent stuff
+
+            new_price = computer_1.price
+            print("new price: ", new_price)
+        else:
+           print("Item", computer_1.description, "not found. Please select another item to update the price.")
             
-       new_price = computer_1.price
-       print("new price: ", new_price)
 
 # computer information entered and printed
 def main():

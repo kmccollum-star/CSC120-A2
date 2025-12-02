@@ -18,7 +18,7 @@ class ResaleShop:
             computer_1.update_OS(computer_1) 
             computer_1.update_price(computer_1)
         else: 
-            print("Error.")
+            print("Item", computer_1.description, "not found. Please select another item to refurbish.")
 
 
 # checks that inventory has items in it and prints the description of these items
@@ -27,7 +27,7 @@ class ResaleShop:
             for self.item in self.inventory:
                 print(f"Item Description: - {(self.item.description)}")
         else:
-            print("No inventory to display.")
+            print("Error. No inventory to display.")
     
 # buys computer and adds to resale shop inventory
     def buy(self, computer_1: Computer):
@@ -40,8 +40,11 @@ class ResaleShop:
 
 # sells computer and removes from resale shop inventory
     def sell(self, computer_1: Computer):
-        print("Selling Item:", computer_1.description)
-        self.inventory.remove(computer_1)
+        if computer_1 in self.inventory:
+            print("Selling Item:", computer_1.description)
+            self.inventory.remove(computer_1)
+        else:
+            print("Error.")
 
 # stores computer class and resale shop class and runs different methods
 def main():
